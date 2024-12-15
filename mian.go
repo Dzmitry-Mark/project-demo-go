@@ -22,6 +22,8 @@ func main() {
 	log.Printf("Listening: %s", port)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
 		clientIP, _, err := net.SplitHostPort(r.RemoteAddr)
 		if err != nil {
 			http.Error(w, "Ip error", http.StatusInternalServerError)
